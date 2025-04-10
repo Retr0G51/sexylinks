@@ -65,31 +65,31 @@ const galleryImages = [
         name: 'hotgirl9',
         filename: 'IMG_20250410_002823_842.jpg',
         category: 'hot'
-    }
+    },
     {
         id: 10,
         name: 'hotgirl10',
         filename: 'IMG_20250410_002907_174.jpg',
         category: 'hot'
-    }
+    },
     {
         id: 11,
         name: 'hotgirl11',
         filename: 'IMG_20250410_002856_318.jpg',
         category: 'hot'
-    }
+    },
     {
         id: 12,
         name: 'hotgirl112',
         filename: 'IMG_20250410_002912_332.jpg',
         category: 'hot'
-    }
+    },
     {
         id: 13,
         name: 'hotgirl113',
         filename: 'IMG_20250410_003003.jpg',
         category: 'hot'
-    }
+    },
     {
         id: 14,
         name: 'hotgirl14',
