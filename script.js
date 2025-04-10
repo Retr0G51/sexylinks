@@ -6,7 +6,7 @@ const config = {
     baseUrl: 'https://raw.githubusercontent.com/Retr0G51/sexylinks/main/Imagenes/',
     
     // Define aquí tus categorías
-    categories: ['Hot']
+    categories: ['hot']
 };
 
 // Array de imágenes
