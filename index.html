@@ -16,6 +16,24 @@
                     <li><a href="#" class="active">Inicio</a></li>
                     <li><a href="#">Álbumes</a></li>
                     <li><a href="#">Favoritos</a></li>
+                </ul><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Galería de Fotos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mi Galería</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Inicio</a></li>
+                    <li><a href="#">Colecciones</a></li>
+                    <li><a href="#">Acerca de</a></li>
                 </ul>
             </nav>
         </div>
@@ -23,23 +41,19 @@
 
     <main>
         <div class="container">
-            <div class="upload-container">
-                <div class="upload-box">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <p>Arrastra tus fotos aquí o</p>
-                    <label for="file-upload" class="custom-button">Seleccionar archivos</label>
-                    <input id="file-upload" type="file" multiple accept="image/*">
-                </div>
-            </div>
-
             <div class="filters">
                 <button class="filter-btn active" data-filter="all">Todas</button>
-                <button class="filter-btn" data-filter="recent">Recientes</button>
-                <button class="filter-btn" data-filter="favorites">Favoritas</button>
+                <button class="filter-btn" data-filter="nature">Naturaleza</button>
+                <button class="filter-btn" data-filter="urban">Urbanas</button>
+                <button class="filter-btn" data-filter="architecture">Arquitectura</button>
             </div>
 
             <div class="gallery" id="gallery">
                 <!-- Las fotos se cargarán aquí dinámicamente con JavaScript -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando galería...</p>
+                </div>
             </div>
         </div>
     </main>
@@ -56,10 +70,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 FotosG - Todos los derechos reservados</p>
+            <p>&copy; 2025 Mi Galería - Todos los derechos reservados</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-</html>
