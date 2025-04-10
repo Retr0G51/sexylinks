@@ -3,7 +3,7 @@ const config = {
     // Cambia esto por la URL base de tus imágenes en GitHub
     // Ejemplo: Para un repositorio con estructura https://github.com/usuario/repo
     // la URL base sería: https://raw.githubusercontent.com/usuario/repo/main/
-    baseUrl: 'https://raw.githubusercontent.com/usuario/repo/main/images/',
+    baseUrl: 'https://raw.githubusercontent.com/Retr0G51/sexylinks/main/Imagenes/',
     
     // Define aquí tus categorías
     categories: ['Hot']
@@ -15,13 +15,13 @@ const galleryImages = [
     {
         id: 1,
         name: 'Montañas al atardecer',
-        filename: 'mountains-sunset.jpg', // Nombre del archivo en GitHub
+        filename: 'IMG_20250409_121015_951.jpg', // Nombre del archivo en GitHub
         category: 'nature'
     },
     {
         id: 2,
         name: 'Bosque de pinos',
-        filename: 'pine-forest.jpg',
+        filename: 'IMG_20250409_121115_087.jpg',
         category: 'nature'
     },
     {
