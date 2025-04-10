@@ -1,79 +1,95 @@
-// Datos de ejemplo para la galería (puedes reemplazarlos con tus propios datos)
-const sampleImages = [
+// Configuración para cargar las imágenes desde GitHub
+const config = {
+    // Cambia esto por la URL base de tus imágenes en GitHub
+    // Ejemplo: Para un repositorio con estructura https://github.com/usuario/repo
+    // la URL base sería: https://raw.githubusercontent.com/usuario/repo/main/
+    baseUrl: 'https://raw.githubusercontent.com/usuario/repo/main/images/',
+    
+    // Define aquí tus categorías
+    categories: ['Hot']
+};
+
+// Array de imágenes
+// Este array debe ser modificado con las rutas de tus imágenes en GitHub
+const galleryImages = [
     {
         id: 1,
-        name: 'Paisaje montañoso',
-        src: 'https://picsum.photos/id/1018/800/600',
-        date: '2025-04-02',
-        favorite: true,
-        category: 'recent'
+        name: 'Montañas al atardecer',
+        filename: 'mountains-sunset.jpg', // Nombre del archivo en GitHub
+        category: 'nature'
     },
     {
         id: 2,
-        name: 'Playa tropical',
-        src: 'https://picsum.photos/id/1019/800/600',
-        date: '2025-03-15',
-        favorite: false,
-        category: 'recent'
+        name: 'Bosque de pinos',
+        filename: 'pine-forest.jpg',
+        category: 'nature'
     },
     {
         id: 3,
-        name: 'Ciudad al atardecer',
-        src: 'https://picsum.photos/id/1033/800/600',
-        date: '2025-02-21',
-        favorite: true,
-        category: 'favorites'
+        name: 'Playa tropical',
+        filename: 'tropical-beach.jpg',
+        category: 'nature'
     },
     {
         id: 4,
-        name: 'Bosque verde',
-        src: 'https://picsum.photos/id/1037/800/600',
-        date: '2025-01-12',
-        favorite: false,
-        category: ''
+        name: 'Calles de Nueva York',
+        filename: 'nyc-streets.jpg',
+        category: 'urban'
     },
     {
         id: 5,
-        name: 'Flores coloridas',
-        src: 'https://picsum.photos/id/1052/800/600',
-        date: '2024-12-05',
-        favorite: true,
-        category: 'favorites'
+        name: 'Tokyo de noche',
+        filename: 'tokyo-night.jpg',
+        category: 'urban'
     },
     {
         id: 6,
-        name: 'Calle urbana',
-        src: 'https://picsum.photos/id/1067/800/600',
-        date: '2024-11-20',
-        favorite: false,
-        category: ''
+        name: 'Calle concurrida',
+        filename: 'busy-street.jpg',
+        category: 'urban'
+    },
+    {
+        id: 7,
+        name: 'Edificio moderno',
+        filename: 'modern-building.jpg',
+        category: 'architecture'
+    },
+    {
+        id: 8,
+        name: 'Catedral histórica',
+        filename: 'historic-cathedral.jpg',
+        category: 'architecture'
+    },
+    {
+        id: 9,
+        name: 'Puente famoso',
+        filename: 'famous-bridge.jpg',
+        category: 'architecture'
     }
+    // Agrega más imágenes según necesites
 ];
 
 // Variables globales
-let currentImages = [...sampleImages];
 let currentFilter = 'all';
 let currentIndex = 0;
 
 // Elementos DOM
 const gallery = document.getElementById('gallery');
-const fileUpload = document.getElementById('file-upload');
-const filterButtons = document.querySelectorAll('.filter-btn');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const caption = document.getElementById('caption');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const closeLightbox = document.querySelector('.close-lightbox');
-const uploadBox = document.querySelector('.upload-box');
+const filterButtons = document.querySelectorAll('.filter-btn');
 
-// Cargar imágenes iniciales
-document.addEventListener('DOMContentLoaded', function() {
-    renderGallery();
+// Inicializar la galería cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', () => {
+    loadGallery();
     setupEventListeners();
 });
 
-// Configurar todos los event listeners
+// Configura todos los event listeners
 function setupEventListeners() {
     // Filtros
     filterButtons.forEach(btn => {
@@ -88,7 +104,7 @@ function setupEventListeners() {
     prevBtn.addEventListener('click', showPrevImage);
     nextBtn.addEventListener('click', showNextImage);
 
-    // Escape para cerrar lightbox
+    // Teclas para navegar en el lightbox
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeLightboxModal();
@@ -98,79 +114,38 @@ function setupEventListeners() {
             showNextImage();
         }
     });
-
-    // Cargar archivos
-    fileUpload.addEventListener('change', handleFileUpload);
-    
-    // Drag and drop
-    uploadBox.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        this.style.borderColor = 'var(--secondary-color)';
-        this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
-    });
-    
-    uploadBox.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        this.style.borderColor = 'var(--primary-color)';
-        this.style.backgroundColor = '';
-    });
-    
-    uploadBox.addEventListener('drop', function(e) {
-        e.preventDefault();
-        this.style.borderColor = 'var(--primary-color)';
-        this.style.backgroundColor = '';
-        
-        if (e.dataTransfer.files.length > 0) {
-            handleFiles(e.dataTransfer.files);
-        }
-    });
 }
 
-// Renderizar la galería basada en el filtro actual
-function renderGallery() {
-    gallery.innerHTML = '';
-    let filteredImages = [...currentImages];
-    
-    if (currentFilter === 'recent') {
-        filteredImages = currentImages.filter(img => img.category === 'recent');
-    } else if (currentFilter === 'favorites') {
-        filteredImages = currentImages.filter(img => img.favorite);
+// Cargar imágenes en la galería
+function loadGallery() {
+    gallery.innerHTML = ''; // Limpiar galería
+
+    // Filtrar imágenes según categoría seleccionada
+    let filteredImages = [...galleryImages];
+    if (currentFilter !== 'all') {
+        filteredImages = galleryImages.filter(img => img.category === currentFilter);
     }
     
+    // Verificar si hay imágenes para mostrar
     if (filteredImages.length === 0) {
-        gallery.innerHTML = '<p class="no-images">No hay imágenes para mostrar en esta categoría.</p>';
+        gallery.innerHTML = `
+            <div class="empty-gallery">
+                <i class="fas fa-image"></i>
+                <p>No hay imágenes disponibles en esta categoría.</p>
+            </div>`;
         return;
     }
     
+    // Crear elementos para cada imagen
     filteredImages.forEach((image, index) => {
         const item = createGalleryItem(image, index);
         gallery.appendChild(item);
     });
     
-    // Añadir event listeners a los nuevos items
+    // Añadir event listeners a los nuevos items de la galería
     document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('action-btn')) {
-                openLightbox(index);
-            }
-        });
-    });
-    
-    // Añadir event listeners a los botones de favorito
-    document.querySelectorAll('.favorite-btn').forEach((btn, index) => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const imageId = parseInt(this.closest('.gallery-item').getAttribute('data-id'));
-            toggleFavorite(imageId);
-        });
-    });
-    
-    // Añadir event listeners a los botones de eliminar
-    document.querySelectorAll('.delete-btn').forEach((btn, index) => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const imageId = parseInt(this.closest('.gallery-item').getAttribute('data-id'));
-            deleteImage(imageId);
+        item.addEventListener('click', function() {
+            openLightbox(index);
         });
     });
 }
@@ -181,17 +156,15 @@ function createGalleryItem(image, index) {
     item.className = 'gallery-item fade-in';
     item.setAttribute('data-id', image.id);
     
+    // Construir la URL completa de la imagen
+    const imageUrl = `${config.baseUrl}${image.filename}`;
+    
     item.innerHTML = `
-        <img src="${image.src}" alt="${image.name}" class="gallery-img">
+        <img src="${imageUrl}" alt="${image.name}" class="gallery-img" loading="lazy">
         <div class="item-overlay">
-            <span class="item-name">${image.name}</span>
-            <div class="item-actions">
-                <button class="action-btn favorite-btn" title="${image.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}">
-                    <i class="fas fa-heart" style="color: ${image.favorite ? 'red' : 'white'};"></i>
-                </button>
-                <button class="action-btn delete-btn" title="Eliminar imagen">
-                    <i class="fas fa-trash"></i>
-                </button>
+            <div class="item-info">
+                <div class="item-name">${image.name}</div>
+                <div class="item-category">${capitalize(image.category)}</div>
             </div>
         </div>
     `;
@@ -211,23 +184,23 @@ function setActiveFilter(filter) {
         }
     });
     
-    renderGallery();
+    loadGallery();
 }
 
 // Abrir el lightbox
 function openLightbox(index) {
-    let filteredImages = [...currentImages];
-    
-    if (currentFilter === 'recent') {
-        filteredImages = currentImages.filter(img => img.category === 'recent');
-    } else if (currentFilter === 'favorites') {
-        filteredImages = currentImages.filter(img => img.favorite);
+    // Filtrar imágenes según categoría seleccionada
+    let filteredImages = [...galleryImages];
+    if (currentFilter !== 'all') {
+        filteredImages = galleryImages.filter(img => img.category === currentFilter);
     }
     
     currentIndex = index;
     
     const image = filteredImages[index];
-    lightboxImg.src = image.src;
+    const imageUrl = `${config.baseUrl}${image.filename}`;
+    
+    lightboxImg.src = imageUrl;
     caption.textContent = image.name;
     
     lightbox.classList.add('active');
@@ -242,110 +215,45 @@ function closeLightboxModal() {
 
 // Mostrar imagen anterior
 function showPrevImage() {
-    let filteredImages = [...currentImages];
-    
-    if (currentFilter === 'recent') {
-        filteredImages = currentImages.filter(img => img.category === 'recent');
-    } else if (currentFilter === 'favorites') {
-        filteredImages = currentImages.filter(img => img.favorite);
+    // Filtrar imágenes según categoría seleccionada
+    let filteredImages = [...galleryImages];
+    if (currentFilter !== 'all') {
+        filteredImages = galleryImages.filter(img => img.category === currentFilter);
     }
     
     currentIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
     const image = filteredImages[currentIndex];
+    const imageUrl = `${config.baseUrl}${image.filename}`;
     
-    lightboxImg.src = image.src;
+    lightboxImg.src = imageUrl;
     caption.textContent = image.name;
 }
 
 // Mostrar imagen siguiente
 function showNextImage() {
-    let filteredImages = [...currentImages];
-    
-    if (currentFilter === 'recent') {
-        filteredImages = currentImages.filter(img => img.category === 'recent');
-    } else if (currentFilter === 'favorites') {
-        filteredImages = currentImages.filter(img => img.favorite);
+    // Filtrar imágenes según categoría seleccionada
+    let filteredImages = [...galleryImages];
+    if (currentFilter !== 'all') {
+        filteredImages = galleryImages.filter(img => img.category === currentFilter);
     }
     
     currentIndex = (currentIndex + 1) % filteredImages.length;
     const image = filteredImages[currentIndex];
+    const imageUrl = `${config.baseUrl}${image.filename}`;
     
-    lightboxImg.src = image.src;
+    lightboxImg.src = imageUrl;
     caption.textContent = image.name;
 }
 
-// Manejar archivos subidos
-function handleFileUpload(e) {
-    if (e.target.files.length > 0) {
-        handleFiles(e.target.files);
-    }
+// Manejar errores de carga de imágenes
+function handleImageError(img) {
+    img.onerror = function() {
+        this.src = 'placeholder.jpg'; // Imagen de respaldo
+        this.alt = 'Imagen no disponible';
+    };
 }
 
-// Procesar los archivos
-function handleFiles(files) {
-    Array.from(files).forEach(file => {
-        if (file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                const newImage = {
-                    id: Date.now() + Math.floor(Math.random() * 1000),
-                    name: file.name.split('.')[0],
-                    src: e.target.result,
-                    date: new Date().toISOString().split('T')[0],
-                    favorite: false,
-                    category: 'recent'
-                };
-                
-                currentImages.unshift(newImage);
-                
-                // Actualizar la galería si el filtro actual lo permite
-                if (currentFilter === 'all' || currentFilter === 'recent') {
-                    renderGallery();
-                } else {
-                    // Mostrar notificación
-                    showNotification('Imagen subida con éxito');
-                }
-            };
-            
-            reader.readAsDataURL(file);
-        }
-    });
-    
-    // Limpiar el campo de archivo
-    fileUpload.value = '';
-}
-
-// Alternar favorito
-function toggleFavorite(imageId) {
-    const index = currentImages.findIndex(img => img.id === imageId);
-    
-    if (index !== -1) {
-        currentImages[index].favorite = !currentImages[index].favorite;
-        renderGallery();
-    }
-}
-
-// Eliminar imagen
-function deleteImage(imageId) {
-    if (confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
-        currentImages = currentImages.filter(img => img.id !== imageId);
-        renderGallery();
-    }
-}
-
-// Mostrar notificación
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification fade-in';
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.classList.add('fade-out');
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 500);
-    }, 3000);
+// Función para capitalizar la primera letra
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
