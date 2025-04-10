@@ -34,7 +34,7 @@ body {
 header {
     background-color: white;
     box-shadow: var(--shadow);
-    position: sticky;
+    position: center;
     top: 0;
     z-index: 10;
 }
