@@ -14,85 +14,85 @@ const config = {
 const galleryImages = [
     {
         id: 1,
-        name: '',
+        name: 'hotgirl',
         filename: 'IMG_20250409_121015_951.jpg', // Nombre del archivo en GitHub
         category: 'hot'
     },
     {
         id: 2,
-        name: '',
+        name: 'hotgirl2',
         filename: 'IMG_20250409_121115_087.jpg',
         category: 'hot'
     },
     {
         id: 3,
-        name: '',
+        name: 'hotgirl3',
         filename: 'IMG_20250409_121124_748.jpg',
         category: 'nature'
     },
     {
         id: 4,
-        name: '',
+        name: 'hotgirl4',
         filename: 'IMG_20250409_121240_789.jpg',
         category: 'urban'
     },
     {
         id: 5,
-        name: '',
+        name: 'hotgirl5',
         filename: 'IMG_20250410_002735_090.jpg',
         category: 'hot'
     },
     {
         id: 6,
-        name: '',
+        name: 'hotgirl6',
         filename: 'IMG_20250410_002748_291.jpg',
         category: 'hot'
     },
     {
         id: 7,
-        name: '',
+        name: 'hotgirl7',
         filename: 'IMG_20250410_002802_400.jpg',
         category: 'hot'
     },
     {
         id: 8,
-        name: '',
+        name: 'hotgirl8',
         filename: 'IMG_20250410_002809_868.jpg',
         category: 'hot'
     },
     {
         id: 9,
-        name: '',
+        name: 'hotgirl9',
         filename: 'IMG_20250410_002823_842.jpg',
         category: 'hot'
     }
     {
         id: 10,
-        name: '',
+        name: 'hotgirl10',
         filename: 'IMG_20250410_002907_174.jpg',
         category: 'hot'
     }
     {
         id: 11,
-        name: '',
+        name: 'hotgirl11',
         filename: 'IMG_20250410_002856_318.jpg',
         category: 'hot'
     }
     {
         id: 12,
-        name: '',
+        name: 'hotgirl112',
         filename: 'IMG_20250410_002912_332.jpg',
         category: 'hot'
     }
     {
         id: 13,
-        name: '',
+        name: 'hotgirl113',
         filename: 'IMG_20250410_003003.jpg',
         category: 'hot'
     }
     {
         id: 14,
-        name: '',
+        name: 'hotgirl14',
         filename: 'IMG_20250410_003021.jpg',
         category: 'hot'
     }
