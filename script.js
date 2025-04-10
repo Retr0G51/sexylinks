@@ -14,13 +14,13 @@ const config = {
 const galleryImages = [
     {
         id: 1,
-        name: 'Montañas al atardecer',
+        name: '',
         filename: 'IMG_20250409_121015_951.jpg', // Nombre del archivo en GitHub
         category: 'nature'
     },
     {
         id: 2,
-        name: 'Bosque de pinos',
+        name: '',
         filename: 'IMG_20250409_121115_087.jpg',
         category: 'nature'
     },
