@@ -28,19 +28,18 @@ const galleryImages = [
         id: 3,
         name: 'hotgirl3',
         filename: 'IMG_20250409_121124_748.jpg',
-        category: 'nature'
+        category: 'hot'
     },
     {
         id: 4,
         name: 'hotgirl4',
         filename: 'IMG_20250409_121240_789.jpg',
-        category: 'urban'
+        category: 'hot'
     },
     {
         id: 5,
         name: 'hotgirl5',
         filename: 'IMG_20250410_002735_090.jpg',
-        category: 'hot'
         category: 'hot'
     }
     // Agrega más imágenes según necesites
