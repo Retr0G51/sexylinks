@@ -16,55 +16,85 @@ const galleryImages = [
         id: 1,
         name: '',
         filename: 'IMG_20250409_121015_951.jpg', // Nombre del archivo en GitHub
-        category: 'nature'
+        category: 'hot'
     },
     {
         id: 2,
         name: '',
         filename: 'IMG_20250409_121115_087.jpg',
-        category: 'nature'
+        category: 'hot'
     },
     {
         id: 3,
-        name: 'Playa tropical',
-        filename: 'tropical-beach.jpg',
+        name: '',
+        filename: 'IMG_20250409_121124_748.jpg',
         category: 'nature'
     },
     {
         id: 4,
-        name: 'Calles de Nueva York',
-        filename: 'nyc-streets.jpg',
+        name: '',
+        filename: 'IMG_20250409_121240_789.jpg',
         category: 'urban'
     },
     {
         id: 5,
-        name: 'Tokyo de noche',
-        filename: 'tokyo-night.jpg',
-        category: 'urban'
+        name: '',
+        filename: 'IMG_20250410_002735_090.jpg',
+        category: 'hot'
     },
     {
         id: 6,
-        name: 'Calle concurrida',
-        filename: 'busy-street.jpg',
-        category: 'urban'
+        name: '',
+        filename: 'IMG_20250410_002748_291.jpg',
+        category: 'hot'
     },
     {
         id: 7,
-        name: 'Edificio moderno',
-        filename: 'modern-building.jpg',
-        category: 'architecture'
+        name: '',
+        filename: 'IMG_20250410_002802_400.jpg',
+        category: 'hot'
     },
     {
         id: 8,
-        name: 'Catedral histórica',
-        filename: 'historic-cathedral.jpg',
-        category: 'architecture'
+        name: '',
+        filename: 'IMG_20250410_002809_868.jpg',
+        category: 'hot'
     },
     {
         id: 9,
-        name: 'Puente famoso',
-        filename: 'famous-bridge.jpg',
-        category: 'architecture'
+        name: '',
+        filename: 'IMG_20250410_002823_842.jpg',
+        category: 'hot'
+    }
+    {
+        id: 10,
+        name: '',
+        filename: 'IMG_20250410_002907_174.jpg',
+        category: 'hot'
+    }
+    {
+        id: 11,
+        name: '',
+        filename: 'IMG_20250410_002856_318.jpg',
+        category: 'hot'
+    }
+    {
+        id: 12,
+        name: '',
+        filename: 'IMG_20250410_002912_332.jpg',
+        category: 'hot'
+    }
+    {
+        id: 13,
+        name: '',
+        filename: 'IMG_20250410_003003.jpg',
+        category: 'hot'
+    }
+    {
+        id: 14,
+        name: '',
+        filename: 'IMG_20250410_003021.jpg',
+        category: 'hot'
     }
     // Agrega más imágenes según necesites
 ];
